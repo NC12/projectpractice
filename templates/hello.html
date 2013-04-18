@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+{% block content %}
+    <h2>Welcome! You are now logged in.</h2>
+	<br/>
+	<br/>
+	<a href="/logout">Logout</a>
+	<h3>DHS Memento Items:</h3>
+	<div class="datagrid">
+	<form action="/order" method="POST">
+		<table>
+			<tr>
+				<th>Image</th>
+				<th>Item Name</th>
+				<th>Price</th>
+				<th>Quantity in Stock</th>
+				<th>Order:</th>
+				<th>Amount Payable</th>
+			</tr>
+			{% for item in merchandise %}
+			<tr>
+				<td><img src="../static/images/{{item.file}}.jpg" alt="{{item.name}}" height="100" width="100"></td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.price }}</td>
+				<td>{{ item.quantity }}</td>
+				<td>
+					<select id="{{ item.name }}" name="{{item.name}}">
+						{% for i in range(0, item.quantity + 1) %}
+						<option value = "{{ i }}">{{ i }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td><!--{% if number != 0 %}{{total}}{% endif %}--></td>
+			</tr>
+			{% endfor %}
+		</table>
+		<input type="submit" value="Confirm Order" class="button">
+	</form>
+	</div>
+	
+{% endblock %}

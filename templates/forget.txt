@@ -1,0 +1,10 @@
+Dear {{user}},
+
+Your password has been reset to {{user}}.
+
+It is advisable to change your password immediately.
+
+Head back to the store and check out the items now!
+
+Yours sincerely,
+DHS Memento

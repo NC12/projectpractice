@@ -1,7 +1,7 @@
-import sqlite3 as lite
+import sqlite3
 import sys
 
-con = lite.connect('merchandise.db')
+con = sqlite3.connect('merchandise.db')
 
 merchandise = (
     ('A4 lecture pad', 'lecturepad', 2.60, 10),
@@ -21,8 +21,17 @@ merchandise = (
 
 with con:
     cur = con.cursor()
-    
     cur.execute("DROP TABLE IF EXISTS merchandise")
     cur.execute("CREATE TABLE merchandise(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, file TEXT, price INT, quantity INT)")
     cur.executemany("INSERT INTO merchandise(name, file, price, quantity) VALUES(?, ?, ?, ?)", merchandise)
-    con.close()
+con.close()
+
+con = sqlite3.connect("data.db")
+with con:
+    cur = con.cursor()
+    cur.execute("DROP TABLE IF EXISTS orders")
+    cur.execute("CREATE TABLE orders(order_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, item_name TEXT NOT NULL, price INTEGER NOT NULL, quantity INTEGER NOT NULL, total INTEGER NOT NULL, confirmed TEXT)")
+    cur.execute("DROP TABLE IF EXISTS users")
+    cur.execute("CREATE TABLE users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL)")
+con.close()
+

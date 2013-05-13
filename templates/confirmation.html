@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block content %}
+  <a href="#" onclick="window.print();return false;">Print this page</a>
+  <p>Thank you for making a purchase with DHS Memento! A receipt will be sent to your email soon. 
+  </br> If it does not show up, please <a href="mailto:memento@dhs.sg">contact us</a></p>
+  <h2>Your Purchase Summary:</h2>
+  <div class="datagrid">
+	<table>
+		<tr>
+			<th>Item Name</th>
+			<th>Price</th>
+			<th>Quantity Order:</th>
+			<th>Total:</th>
+		</tr>
+		{% for order in orders %}
+		<tr>
+			<td>{{ order.item_name }}</td>
+			<td class="alt">{{ order.price }}</td>
+			<td>{{ order.quantity }}</td>
+			<td class="alt">{{ order.total }}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<th colspan="4" class="total">Grand Total: ${{ grand_total }}</th>
+		</tr>
+	</table>
+  </div>
+{% endblock %}

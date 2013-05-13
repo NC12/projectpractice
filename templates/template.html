@@ -4,8 +4,23 @@
 		<title>DHS Memento</title>
 		<link rel="stylesheet" href="/static/css/main.css"/>
 	</head>
+
 	<body>
-		<li><a href="/log">Login</a></li>
+		<nav>
+			<!-- navigation links -->
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About DHS Memento</a></li>
+				<li><a href="/browse">Browse Items</a></li>
+				<li><a href="/orders">My Orders</a></li>
+				{% if session['logged_in'] %}
+				<li><a href="/logout">Logout</a></li>
+				{% else %}
+				<li><a href="/log">Login</a></li>
+				{% endif %}
+			</ul>
+		<!-- end navbar body -->
+		</nav>
 		<div class="container">
 			{% block content %}
 			{% endblock %}

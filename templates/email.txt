@@ -1,0 +1,8 @@
+Dear {{user}},
+
+Thank you for making a purchase with DHS Memento!
+
+Simply present this email to collect your items at DHS Memento near the Student Services Centre.
+
+Yours sincerely,
+DHS Memento

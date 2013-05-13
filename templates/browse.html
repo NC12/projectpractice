@@ -1,0 +1,43 @@
+{% extends "template.html" %}
+{% block content %}
+	<h3>DHS Memento Items:</h3>
+	{% for message in get_flashed_messages() %}
+    <div class=flash>
+        {{ message }}
+    </div>
+	{% endfor %}
+	<div class="datagrid">
+		<form action="/add" method="POST">
+			<table>
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+					<th>Quantity in Stock</th>
+					{% if session['logged_in'] %}
+					<th>Order:</th>
+					{% endif %}
+				</tr>
+				{% for item in merchandise %}
+				<tr>
+					<td><img src="../static/images/{{item.file}}.jpg" alt="{{item.name}}" height="200" width="200"></br>{{ item.name }}</td>
+					<td class="alt">${{ item.price }}</td>
+					<td>{{ item.quantity }}</td>
+					{% if session['logged_in'] %}
+					<td class="alt">
+						<select id="{{ item.name }}" name="{{item.name}}">
+							{% for i in range(0, item.quantity + 1) %}
+							<option value = "{{ i }}">{{ i }}</option>
+							{% endfor %}
+						</select>
+					</td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+			</table>
+			{% if session['logged_in'] %}
+			<input type="submit" value="Order" class="button">
+			{% endif %}
+		</form>
+	</div>
+	
+{% endblock %}

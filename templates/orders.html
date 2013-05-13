@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+{% block content %}
+<div class="content">
+  {% if exists %}
+  <div id="summary">
+	  <h2>Your Order Summary:</h2>
+	  <div class="datagrid">
+		<table>
+			<tr>
+				<th>Item Name</th>
+				<th>Price</th>
+				<th>Quantity Order</th>
+				<th>Amount Payable</th>
+			</tr>
+			{% for order in orders %}
+			<tr>
+				<td>{{ order.item_name }}</td>
+				<td class="alt">{{ order.price }}</td>
+				<td>{{ order.quantity }}</td>
+				<td class="alt">{{ order.total }}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<th colspan="4" class="total">Grand Total: ${{ grand_total }}</th>
+			</tr>
+		</table>
+	  </div>
+	  <a href="/edit" class="button">Edit Orders</a>
+  </div>
+  <form id="payment" action="/confirm" method="POST">
+	<fieldset>
+		<legend>Payment Information</legend>
+		<label for="cc_number">Card number</label>
+		<input type="text" id="cc_number" autocomplete="off" maxlength="19" name="cc_number" value="">
+		</br>
+		<label for="expdate">Expiration Date</label>
+		<input type="text" id="expdate_month" size="2" maxlength="2" name="expdate_month" placeholder="mm"> / 
+		<input type="text" id="expdate_year" size="2" maxlength="2" name="expdate_year" placeholder="yy">
+		</br>
+		<label for="csc">Card Security Code</label>
+		<input type="text" id="csc" size="4" maxlength="4" name="csc">
+		</br>
+		<label for="first_name">First Name</label>
+		<input type="text" id="first_name" name="first_name">	
+		</br>
+		<label for="last_name">Last Name</label>
+		<input type="text" id="last_name" name="last_name">
+	</fieldset>
+	<input type="submit" value="Confirm Order" class="button">
+  </form>
+  {% else %}
+  <p>You have no orders at the moment</p>
+  {% endif %}
+ </div>
+{% endblock %}

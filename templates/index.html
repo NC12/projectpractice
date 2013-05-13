@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+{% block content %}
+  <h2>Welcome to DHS Memento</h2>
+  {% if message %}
+  <div class="flash">
+	{{ message }}
+  </div>
+  {% endif %}
+  {% if session['logged_in'] %}
+  <a href="/changepass">Change Password</a>
+  {% endif %}
+{% endblock %}

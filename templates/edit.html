@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+{% block content %}
+<div class="content">
+	  <h2>Edit your orders:</h2>
+	  <form action="/edit" method="POST">
+		  <div class="datagrid">
+			<table>
+				<tr>
+					<th>Item Name</th>
+					<th>Price</th>
+					<th>Quantity Order</th>
+					<th>Amount Payable</th>
+					<th>Delete?</th>
+				</tr>
+				{% for order in orders %}
+				<tr>
+					<td class="alt">{{ order.item_name }}</td>
+					<td>{{ order.price }}</td>
+					<td class="alt">{{ order.quantity }}</td>
+					<td>{{ order.total }}</td>
+					<td class="alt">
+						<input type="radio" id="delete_{{order.item_name}}" name="delete_{{order.item_name}}" value="y"/>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		  </div>
+		  <input type="submit" value="Submit" class="button">
+	  </form>
+ </div>
+{% endblock %}

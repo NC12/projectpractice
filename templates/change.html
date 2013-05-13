@@ -1,16 +1,18 @@
 {% extends "template.html" %}
 {% block content %}
-  <h1>Login</h1>
-  </br>
+  <h1>Change Password</h1>
   {% if error %}
   <p class=error><strong>Error:</strong> {{ error }}
   {% endif %}
   <form action="" method=post>
-    {{ form.username.label }}
-    {{ form.username }}
+    {{ form.curr_password.label }}
+    {{ form.curr_password }}
 	</br>
-    {{ form.password.label }}
-    {{ form.password }} 
+	{{ form.new_password.label }}
+    {{ form.new_password }}
+	</br>
+	{{ form.confirm.label }}
+    {{ form.confirm }}
 	</br>
     {{ form.submit }}
   </form>
@@ -19,6 +21,4 @@
         {{ message }}
     </div>
 {% endfor %}
-<p>Don't have an account? Sign up <a href="/signup">here</a></p>
-<a href="/forget">Forget your password?</a>
 {% endblock %}

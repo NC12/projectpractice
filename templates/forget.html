@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{% block content %}
+  <h1>Forget Password?</h1>
+  <form action="/forget" method=post>
+    {{ form.username.label }}
+    {{ form.username }}
+	</br>
+    {{ form.submit }}
+  </form>
+{% for message in get_flashed_messages() %}
+    <div class=flash>
+        {{ message }}
+    </div>
+{% endfor %}
+{% endblock %}
